@@ -1,6 +1,11 @@
 syntax = "proto3";
-option go_package = "github.com/tktkc72/zetasql-extract-tables/grpc";
+
 package extracttable;
+
+option go_package = "github.com/tktkc72/zetasql-extract-table/grpc";
+option java_package = "com.tktkc72.zetasql_extract_table";
+option java_outer_classname = "ZetasqlExtractTable";
+
 
 service ExtractTableNamesFromStatement {
   rpc ExtractTableNamesFrom (ExtractTableNamesRequest) returns (ExtractTableNamesResponse) {}
