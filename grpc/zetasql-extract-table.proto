@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "github.com/tktkc72/zetasql-extract-tables/grpc";
+package extracttable;
+
+service ExtractTableNamesFromStatement {
+  rpc ExtractTableNamesFrom (ExtractTableNamesRequest) returns (ExtractTableNamesResponse) {}
+}
+message ExtractTableNamesRequest {
+  string statement = 1;
+}
+message ExtractTableNamesResponse {
+  repeated string tableNames = 1;
+}
