@@ -23,6 +23,8 @@ plugins {
     id 'application'
 
     id 'com.google.protobuf' version '0.8.13'
+
+    id 'eclipse'
 }
 
 repositories {
