@@ -8,7 +8,6 @@ import io.grpc.stub.StreamObserver;
 import java.util.stream.Collectors;
 import java.util.List;
 
-import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.zetasql.Analyzer;
 
 import grpc.zetasql.extract.table.server.ExtractTableNamesFromStatementGrpc.ExtractTableNamesFromStatementImplBase;
