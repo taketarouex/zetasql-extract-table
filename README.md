@@ -16,8 +16,10 @@ It provides a grpc interface.
 Install [grpcurl](https://github.com/fullstorydev/grpcurl)
 
 ``` bash
-$ grpcurl -plaintext -d '{ "statement": "select * from test1"}' localhost:6565 extracttable.
+$ grpcurl -plaintext -d '{ "statement": "select * from test"}' localhost:6565 extracttable.
 ExtractTableNamesFromStatement/ExtractTableNames
+
+test
 ```
 
 ## Requirements
