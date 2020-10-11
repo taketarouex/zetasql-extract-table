@@ -8,30 +8,20 @@ buildscript {
 }
 
 plugins {
-  // Apply the java plugin to add support for Java
   id 'java'
-
-  // Apply the application plugin to add support for building a CLI application.
   id 'application'
-
   id 'com.google.protobuf' version '0.8.13'
-
   id 'eclipse'
-
   id 'com.google.cloud.tools.jib' version "1.8.0"
 }
 
 repositories {
-  // Use jcenter for resolving dependencies.
-  // You can declare any Maven/Ivy/file repository here.
   jcenter()
 }
 
 dependencies {
-  // This dependency is used by the application.
   implementation 'com.google.guava:guava:29.0-jre'
 
-  // Use JUnit test framework
   testImplementation 'junit:junit:4.13'
 
   compile 'io.github.lognet:grpc-spring-boot-starter:4.0.0'
@@ -59,7 +49,6 @@ protobuf {
 }
 
 application {
-  // Define the main class for the application.
   mainClassName = 'zetasql.extract.table.server.App'
 }
 
@@ -74,3 +63,19 @@ sourceSets {
     }
   }
 }
+
+jib {
+  to {
+    image 'extract_table_server'
+  }
+  container {
+    'zetasql.extract.table.server.App'
+  }
+}
+
+task addProperties(type: Copy) {
+  from file('application.yml')
+  into file('/application.yml')
+}
+
+tasks.jib.dependsOn addProperties
