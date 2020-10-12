@@ -33,3 +33,8 @@ test
 ## Update proto
 
 `./gradlew generateProto`
+
+## Deploy
+
+You can deploy it to Cloud Run.
+You should configure memory limits more than 512MB.
