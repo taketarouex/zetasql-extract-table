@@ -12,7 +12,7 @@ For example, you can analyze a GCP View definition extracting the tables referee
 
 ## Run
 
-`docker-compose up`
+`PORT=6565 docker-compose up`
 
 ## Usage
 
@@ -36,3 +36,8 @@ test
 ## Update proto
 
 `./gradlew generateProto`
+
+## Deploy
+
+You can deploy it to Cloud Run.
+You should configure memory limits more than 512MB.
