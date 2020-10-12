@@ -1,7 +1,10 @@
 # zetasql-extract-table-server
 
-extracts table from sql using [ZetaSQL](https://github.com/google/zetasql).
-It provides a grpc interface.
+zetasql-extract-table-server extracts tables from sql using [ZetaSQL](https://github.com/google/zetasql).
+This provides a grpc interface.
+
+You can use it for data lineage.
+For example, you can analyze a GCP View definition extracting the tables refereed in it.
 
 ## Build
 
