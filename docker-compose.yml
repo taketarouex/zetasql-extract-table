@@ -4,6 +4,6 @@ services:
     app:
         image: extract_table_server
         ports:
-            - "6565:6565"
-        volumes: 
-            - ./application.yml:/application.yml
+            - "${PORT}:${PORT}"
+        environment: 
+            - PORT=${PORT}

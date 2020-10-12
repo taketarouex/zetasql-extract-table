@@ -9,7 +9,7 @@ It provides a grpc interface.
 
 ## Run
 
-`docker-compose up`
+`PORT=6565 docker-compose up`
 
 ## Usage
 

@@ -72,10 +72,3 @@ jib {
     'zetasql.extract.table.server.App'
   }
 }
-
-task addProperties(type: Copy) {
-  from file('application.yml')
-  into file('/application.yml')
-}
-
-tasks.jib.dependsOn addProperties
