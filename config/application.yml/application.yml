@@ -1,3 +1,0 @@
-grpc:
-    port: ${PORT:6566}
-    enableReflection: true
