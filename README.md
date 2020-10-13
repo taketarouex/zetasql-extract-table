@@ -19,8 +19,7 @@ For example, you can analyze a GCP View definition extracting the tables referen
 Install [grpcurl](https://github.com/fullstorydev/grpcurl)
 
 ``` bash
-$ grpcurl -plaintext -d '{ "statement": "select * from test"}' localhost:6565 extracttable.
-ExtractTableNamesFromStatement/ExtractTableNames
+$ grpcurl -plaintext -d '{ "statement": "select * from test"}' localhost:6565 sqlanalyzer.ExtractTableNames/Do
 
 test
 ```

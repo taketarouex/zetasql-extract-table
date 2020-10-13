@@ -49,7 +49,7 @@ protobuf {
 }
 
 application {
-  mainClassName = 'zetasql.extract.table.server.App'
+  mainClassName = 'dev.tktkc72.sqlanalyzer.App'
 }
 
 sourceSets {
@@ -66,9 +66,9 @@ sourceSets {
 
 jib {
   to {
-    image 'extract_table_server'
+    image 'zetasql_extract_table'
   }
   container {
-    'zetasql.extract.table.server.App'
+    'dev.tktkc72.sqlanalyzer.App'
   }
 }

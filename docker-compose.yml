@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     app:
-        image: extract_table_server
+        image: zetasql_extract_table
         ports:
             - "${PORT}:${PORT}"
         environment: 

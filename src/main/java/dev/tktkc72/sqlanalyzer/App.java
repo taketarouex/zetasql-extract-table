@@ -1,4 +1,4 @@
-package zetasql.extract.table.server;
+package dev.tktkc72.sqlanalyzer;
 
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.boot.SpringApplication;
@@ -10,10 +10,10 @@ import java.util.List;
 
 import com.google.zetasql.Analyzer;
 
-import grpc.zetasql.extract.table.server.ExtractTableNamesFromStatementGrpc.ExtractTableNamesFromStatementImplBase;
-import grpc.zetasql.extract.table.server.ZetasqlExtractTable.ExtractTableNamesRequest;
-import grpc.zetasql.extract.table.server.ZetasqlExtractTable.ExtractTableNamesResponse;
-import grpc.zetasql.extract.table.server.ZetasqlExtractTable.ExtractTableNamesResponse.Builder;
+import dev.tktkc72.sqlanalyzer.ExtractTableNamesGrpc.ExtractTableNamesImplBase;
+import dev.tktkc72.sqlanalyzer.ZetasqlExtractTable.ExtractTableNamesRequest;
+import dev.tktkc72.sqlanalyzer.ZetasqlExtractTable.ExtractTableNamesResponse;
+import dev.tktkc72.sqlanalyzer.ZetasqlExtractTable.ExtractTableNamesResponse.Builder;
 
 @SpringBootApplication
 public class App {
@@ -22,10 +22,9 @@ public class App {
     }
 
     @GRpcService
-    public static class ExtractTableNamesService extends ExtractTableNamesFromStatementImplBase {
+    public static class ExtractTableNamesService extends ExtractTableNamesImplBase {
         @Override
-        public void extractTableNames(ExtractTableNamesRequest request,
-                StreamObserver<ExtractTableNamesResponse> responseObserver) {
+        public void do_(ExtractTableNamesRequest request, StreamObserver<ExtractTableNamesResponse> responseObserver) {
             Builder responseBuilder = ExtractTableNamesResponse.newBuilder();
             responseBuilder.addAllTableNames(extractTables(request.getStatement()));
 

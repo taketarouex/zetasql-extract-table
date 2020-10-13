@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package extracttable;
+package sqlanalyzer;
 
-option go_package = "github.com/tktkc72/zetasql-extract-table/grpc";
-option java_package = "grpc.zetasql.extract.table.server";
+option go_package = "github.com/tktkc72/sqlanalyzer";
+option java_package = "dev.tktkc72.sqlanalyzer";
 option java_outer_classname = "ZetasqlExtractTable";
 
 
-service ExtractTableNamesFromStatement {
-  rpc ExtractTableNames (ExtractTableNamesRequest) returns (ExtractTableNamesResponse) {}
+service ExtractTableNames {
+  rpc Do(ExtractTableNamesRequest) returns (ExtractTableNamesResponse) {}
 }
 message ExtractTableNamesRequest {
   string statement = 1;
