@@ -9,6 +9,8 @@ import org.junit.Rule;
 import static org.junit.Assert.*;
 
 import io.grpc.testing.GrpcServerRule;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 
 import dev.tktkc72.sqlanalyzer.App.ExtractTableNamesService;
 
@@ -29,5 +31,10 @@ public class AppTest {
 
         String[] expected = { "bartest", "hogetest" };
         assertArrayEquals(response.getTableNamesList().toArray(), expected);
+
+        String errorSql = "error sql";
+        StatusRuntimeException e = assertThrows(StatusRuntimeException.class,
+                () -> blockingStub.do_(ExtractTableNamesRequest.newBuilder().setStatement(errorSql).build()));
+        assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatus().getCode());
     }
 }

@@ -3,12 +3,16 @@ package dev.tktkc72.sqlanalyzer;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import io.grpc.util.TransmitStatusRuntimeExceptionInterceptor;
 
 import java.util.stream.Collectors;
 import java.util.List;
 
 import com.google.zetasql.Analyzer;
+import com.google.zetasql.SqlException;
 
 import dev.tktkc72.sqlanalyzer.ExtractTableNamesGrpc.ExtractTableNamesImplBase;
 import dev.tktkc72.sqlanalyzer.ZetasqlExtractTable.ExtractTableNamesRequest;
@@ -25,12 +29,21 @@ public class App {
     public static class ExtractTableNamesService extends ExtractTableNamesImplBase {
         @Override
         public void do_(ExtractTableNamesRequest request, StreamObserver<ExtractTableNamesResponse> responseObserver) {
-            Builder responseBuilder = ExtractTableNamesResponse.newBuilder();
-            responseBuilder.addAllTableNames(extractTables(request.getStatement()));
+            try {
+                Builder responseBuilder = ExtractTableNamesResponse.newBuilder();
+                responseBuilder.addAllTableNames(extractTables(request.getStatement()));
 
-            ExtractTableNamesResponse response = responseBuilder.build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
+                ExtractTableNamesResponse response = responseBuilder.build();
+                responseObserver.onNext(response);
+                responseObserver.onCompleted();
+            } catch (SqlException e) {
+                responseObserver.onError(
+                        Status.INVALID_ARGUMENT.withDescription(e.getMessage()).withCause(e).asRuntimeException());
+            } catch (Exception e) {
+                responseObserver
+                        .onError(Status.INTERNAL.withDescription(e.getMessage()).withCause(e).asRuntimeException());
+            }
+
         }
     }
 
